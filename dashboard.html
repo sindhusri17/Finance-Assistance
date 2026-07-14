@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+</head>
+<body>
+
+<h1>💰 AI-Powered Personal Finance Assistant</h1>
+<a href="/logout">
+
+<button style="background:red;float:right;">
+
+Logout
+
+</button>
+
+</a>
+
+<p class="subtitle">
+Track expenses, manage budgets, monitor financial health, and receive savings recommendations.
+</p>
+<h2>📊 Dashboard Overview</h2>
+<div class="dashboard-cards">
+
+<div class="card" style="border-left: 6px solid #2563eb;">
+    <h2>₹{{ total }}</h2>
+    <p>Total Spending</p>
+</div>
+
+<div class="card" style="border-left: 6px solid #16a34a;">
+    <h2>₹{{ budget }}</h2>
+    <p>Monthly Budget</p>
+</div>
+
+<div class="card" style="border-left: 6px solid #f59e0b;">
+    <h2>₹{{ remaining }}</h2>
+    <p>Budget Remaining</p>
+</div>
+
+</div>
+<div class="card" style="background:#ecfdf5;">
+    <h2>💡 Savings Recommendation</h2>
+    <p>{{ recommendation }}</p>
+</div>
+<div class="card" style="background:#eff6ff;">
+    <h2>📈 Financial Health</h2>
+    <h3>{{ health }}</h3>
+</div>
+<style>
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f7fc;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #1e3a8a;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    min-width: 220px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin: 0;
+    color: #2563eb;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+th {
+    background: #2563eb;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: gray;
+}
+</style>
+<hr>
+<div class="card">
+
+<h2>➕ Add New Transaction</h2>
+
+<form action="/add_transaction" method="POST">
+
+Amount:
+<input type="number" name="amount" required>
+
+<br><br>
+
+Category:
+<select name="category">
+    <option>Food</option>
+    <option>Transport</option>
+    <option>Shopping</option>
+    <option>Entertainment</option>
+</select>
+
+<br><br>
+
+Date:
+<input type="date" name="date" required>
+
+<br><br>
+
+<button type="submit" style="padding:10px 20px;">
+    Add Transaction
+</button>
+
+</form>
+</div>
+<div class="card" style="background:#faf5ff;">
+    <h2>📊 Expense Analysis</h2>
+
+    <p>🍔 Food: ₹{{ food_total }}</p>
+    <p>🚌 Transport: ₹{{ transport_total }}</p>
+    <p>🛍 Shopping: ₹{{ shopping_total }}</p>
+    <p>🎬 Entertainment: ₹{{ entertainment_total }}</p>
+</div>
+
+<hr>
+
+<h2>📋 Transaction History</h2>
+
+<table border="1">
+
+<tr>
+    <th>Amount</th>
+    <th>Category</th>
+    <th>Date</th>
+</tr>
+
+{% for t in transactions %}
+
+<tr>
+    <td>{{ t.amount }}</td>
+    <td>{{ t.category }}</td>
+    <td>{{ t.date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+<hr>
+
+<div class="footer">
+    Developed by Sindhu Sri | Internship Project 2026
+</div>
+
+</body>
+</html>
